@@ -1,5 +1,2 @@
-add_executable(
-        Main
-
-        main.cpp
-)
+#add_subdirectory(fileIO)
+add_subdirectory(store)
