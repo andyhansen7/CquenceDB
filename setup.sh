@@ -2,4 +2,7 @@
 
 set -euxo pipefail
 
-cmake -DCMAKE_BUILD_TYPE=Release .
+mkdir build
+cd build
+
+cmake -DCMAKE_BUILD_TYPE=Release ../

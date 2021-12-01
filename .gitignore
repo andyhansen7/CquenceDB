@@ -1,5 +1,5 @@
 # Ignore all compiled binary files
-bin/*
+build/*
 
 # CLion files
 .idea/*
