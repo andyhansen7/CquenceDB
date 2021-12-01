@@ -41,6 +41,8 @@ namespace cquence::store
         uint64_t getID() const;
 
         internal::DocumentReturn getRawDocument(const std::string& field) const;
+        bool updateDocument(const uint64_t _id, const std::string& field, const internal::DocumentEntry& value);
+        internal::DocumentReturn removeDocument(const uint64_t _id, const std::string& field);
     private:
         // Data
         uint64_t _id;

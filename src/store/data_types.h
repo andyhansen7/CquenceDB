@@ -14,7 +14,8 @@ namespace cquence::store
         _T_TIME,
         _T_STRING,
         _T_DATE,
-        _T_DOCUMENT
+        _T_DOCUMENT,
+        _T_NULL
     };
 }
 
