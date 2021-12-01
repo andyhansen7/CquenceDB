@@ -13,7 +13,8 @@ namespace cquence::store
         _T_DOUBLE,
         _T_TIME,
         _T_STRING,
-        _T_DATE
+        _T_DATE,
+        _T_DOCUMENT
     };
 }
 

@@ -24,6 +24,12 @@ namespace cquence::store
             std::vector<std::byte> raw;
             DataTypes type;
         } DocumentEntry;
+
+        typedef struct
+        {
+            DocumentEntry doc;
+            bool valid;
+        } DocumentReturn;
     }
 
     class Document
@@ -33,13 +39,16 @@ namespace cquence::store
         ~Document() = default;
 
         uint64_t getID() const;
+
+        internal::DocumentReturn getRawDocument(const std::string& field) const;
     private:
         // Data
         uint64_t _id;
         std::map<std::string, internal::DocumentEntry> _data;
 
         // Bool marked true if being written, disables reads and writes
-        std::atomic<bool> _writeInProgress;
+        mutable std::atomic<bool> _writeInProgress;
+        mutable std::atomic<bool> _readInProgress;
     };
 }
 

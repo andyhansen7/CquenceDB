@@ -8,7 +8,8 @@ using namespace cquence::store;
 
 Document::Document(const uint64_t& _id)
     : _id(_id),
-      _writeInProgress(false)
+      _writeInProgress(false),
+      _readInProgress(false)
 {
 
 }
@@ -16,4 +17,28 @@ Document::Document(const uint64_t& _id)
 uint64_t Document::getID() const
 {
     return _id;
+}
+
+internal::DocumentReturn Document::getRawDocument(const std::string& field) const
+{
+    while(!_writeInProgress);
+
+    _readInProgress = true;
+
+    if(_data.find(field) == _data.end())
+    {
+        _readInProgress = false;
+        internal::DocumentReturn ret;
+        ret.valid = false;
+        return ret;
+    }
+    else
+    {
+        const auto doc = _data.at(field);
+        _readInProgress = false;
+        internal::DocumentReturn ret;
+        ret.doc = doc;
+        ret.valid = true;
+        return ret;
+    }
 }
